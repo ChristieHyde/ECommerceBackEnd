@@ -15,10 +15,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    console.log(req.params.id);
     try {
-        const categoryData = await Traveller.findByPk(req.params.id, {
+        const categoryData = await Category.findByPk(req.params.id, {
             include: [{ model: Product }]
         });
+        console.log(categoryData);
     
         if (!categoryData) {
             res.status(404).json({ message: 'Category with this ID could not be found.' });
